@@ -15,6 +15,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Comment {
+  id: Int!
+  content: String!
+}
+
 type Post {
   id: Int!
   title: String!
@@ -36,6 +41,7 @@ type Query {
   author(id: Int!): Author!
   posts: [Post!]!
   post(id: Int!): Post!
+  comment(id: Int!): Comment!
 }
 
 type Mutation {
@@ -47,6 +53,10 @@ type Mutation {
   createPost(createPostInput: CreatePostInput!): Post!
   updatePost(updatePostInput: UpdatePostInput!): Post!
   removePost(id: Int!): Post!
+  addComment(comment: CreateCommentInput!, postId: Int!): Post!
+  createComment(createCommentInput: CreateCommentInput!): Comment!
+  updateComment(updateCommentInput: UpdateCommentInput!): Comment!
+  removeComment(id: Int!): Comment!
 }
 
 input NewRecipeInput {
@@ -77,6 +87,16 @@ input UpdatePostInput {
   id: Int!
 }
 
+input CreateCommentInput {
+  content: String!
+}
+
+input UpdateCommentInput {
+  content: String
+  id: Int!
+}
+
 type Subscription {
   recipeAdded: Recipe!
+  commentAdded: Comment!
 }
