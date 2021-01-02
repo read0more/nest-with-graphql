@@ -36,7 +36,13 @@ export class RecipesResolver extends BaseResolver(Recipe) {
     const recipe = await this.recipesService.create(newRecipeData);
     pubSub.publish('recipeAdded', { recipeAdded: recipe });
 
-    return recipe;
+    // return recipe;
+    return {
+      title: '하드코딩 리턴',
+      creationDate: new Date(),
+      id: 'asd',
+      ingredients: [''],
+    };
   }
 
   @Mutation((returns) => Boolean)
