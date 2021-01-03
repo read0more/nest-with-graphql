@@ -1,3 +1,4 @@
+import { UpperCaseDirective } from './upper-case.directive';
 import { PubSub } from 'apollo-server-express';
 import { Global, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -16,6 +17,9 @@ import { CommentModule } from './comment/comment.module';
       // include: [RecipesModule],
       autoSchemaFile: 'schema.gql', // Code first 방식
       installSubscriptionHandlers: true,
+      schemaDirectives: {
+        upper: UpperCaseDirective,
+      },
 
       // port 변경
       // subscriptions: {
