@@ -1,3 +1,4 @@
+import { LoggingPlugin } from './logging.plugin';
 import { UpperCaseDirective } from './upper-case.directive';
 import { PubSub } from 'apollo-server-express';
 import { Global, Module } from '@nestjs/common';
@@ -30,6 +31,7 @@ import { CommentModule } from './comment/comment.module';
     AuthorsModule,
     PostsModule,
     CommentModule,
+    LoggingPlugin,
   ],
 })
 @Global()
