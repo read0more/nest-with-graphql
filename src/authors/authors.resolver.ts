@@ -1,3 +1,4 @@
+import { ResultUnion } from './result.union';
 import { Comment } from './../comment/entities/comment.entity';
 import { PubSub } from 'apollo-server-express';
 import { PostsService } from './../posts/posts.service';
@@ -43,6 +44,11 @@ export class AuthorsResolver {
   @Query(() => Author, { name: 'author' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.authorsService.findOne(id);
+  }
+
+  @Query(() => [ResultUnion])
+  unionTest(): Array<typeof ResultUnion> {
+    return [new Author(), new Comment()];
   }
 
   @Mutation(() => Author)

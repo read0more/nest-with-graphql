@@ -4,4 +4,5 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 export class CreateAuthorInput {
   @Field(() => Int, { description: 'Example field (placeholder)' })
   exampleField: number;
+  name: string;
 }

@@ -7,6 +7,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { AuthorsModule } from './authors/authors.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentModule } from './comment/comment.module';
+import { HumanModule } from './human/human.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { CommentModule } from './comment/comment.module';
     AuthorsModule,
     PostsModule,
     CommentModule,
-    LoggingPlugin,
+    // LoggingPlugin,
+    HumanModule,
   ],
 })
 @Global()

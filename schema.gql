@@ -33,16 +33,30 @@ type Author {
   posts: [Post]!
 }
 
+type Human implements Character {
+  id: ID!
+  name: String!
+}
+
+interface Character {
+  id: ID!
+  name: String!
+}
+
 type Query {
   findAllRecipe: [Recipe!]!
   recipe(id: String!): Recipe!
   recipes(offset: Int = 0, limit: Int = 10, skip: Int = 0, take: Int = 25): [Recipe!]!
   authors: [Author!]!
   author(id: Int!): Author!
+  unionTest: [Result!]!
   posts: [Post!]!
   post(id: Int!): Post!
   comment(id: Int!): Comment!
+  human(id: Int!): Human!
 }
+
+union Result = Author | Comment
 
 type Mutation {
   addRecipe(newRecipeData: NewRecipeInput!): Recipe!
@@ -57,6 +71,9 @@ type Mutation {
   createComment(createCommentInput: CreateCommentInput!): Comment!
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   removeComment(id: Int!): Comment!
+  createHuman(createHumanInput: CreateHumanInput!): Human!
+  updateHuman(updateHumanInput: UpdateHumanInput!): Human!
+  removeHuman(id: Int!): Human!
 }
 
 input NewRecipeInput {
@@ -71,8 +88,6 @@ input CreateAuthorInput {
 }
 
 input UpdateAuthorInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
 }
 
@@ -93,6 +108,23 @@ input CreateCommentInput {
 
 input UpdateCommentInput {
   content: String
+  id: Int!
+}
+
+input CreateHumanInput {
+  name: String!
+  favoriteColor: AllowedColor!
+}
+
+enum AllowedColor {
+  RED
+  GREEN
+  BLUE
+}
+
+input UpdateHumanInput {
+  name: String
+  favoriteColor: AllowedColor
   id: Int!
 }
 
